@@ -27,5 +27,8 @@ module Shine
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # config Postgres, use SQL rather than ruby
+    config.active_record.schema_format = :sql
   end
 end
