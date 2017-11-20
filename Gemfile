@@ -29,7 +29,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # webpack serving assets pipeline
 gem 'webpacker'
-
+# foreman manage multiple commands
+gem 'foreman'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
