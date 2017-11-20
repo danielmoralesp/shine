@@ -33,6 +33,8 @@ gem 'webpacker'
 gem 'foreman'
 # authentication
 gem 'devise'
+# fake data
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
