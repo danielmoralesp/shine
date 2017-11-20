@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'webpacker'
 # foreman manage multiple commands
 gem 'foreman'
+# authentication
+gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
