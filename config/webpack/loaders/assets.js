@@ -6,9 +6,15 @@
  * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/dcbang2 for more book information.
 ***/
-// Note: You must restart bin/webpack-dev-server for changes to take effect
+const { env, publicPath } = require('../configuration.js')
 
-const merge = require('webpack-merge')
-const sharedConfig = require('./shared.js')
-
-module.exports = merge(sharedConfig, {})
+module.exports = {
+  test: /\.(jpg|jpeg|png|gif|svg|eot|ttf|woff|woff2)$/i,
+  use: [{
+    loader: 'file-loader',
+    options: {
+      publicPath,
+      name: env.NODE_ENV === 'production' ? '[name]-[hash].[ext]' : '[name].[ext]'
+    }
+  }]
+}

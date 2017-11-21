@@ -6,9 +6,16 @@
  * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/dcbang2 for more book information.
 ***/
-// Note: You must restart bin/webpack-dev-server for changes to take effect
-
-const merge = require('webpack-merge')
-const sharedConfig = require('./shared.js')
-
-module.exports = merge(sharedConfig, {})
+module.exports = {
+  test: /\.html$/,
+  use: [{
+    loader: 'html-loader',
+    options: {
+      minimize: true,
+      removeAttributeQuotes: false,
+      caseSensitive: true,
+      customAttrSurround: [ [/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/] ],
+      customAttrAssign: [ /\)?\]?=/ ]
+    }
+  }]
+}
