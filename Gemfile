@@ -44,6 +44,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # rspec
   gem "rspec-rails", '~> 3.4'
+  gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 group :development do
