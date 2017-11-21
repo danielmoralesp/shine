@@ -1,3 +1,4 @@
+
 /***
  * Excerpted from "Rails, Angular, Postgres, and Bootstrap, Second Edition",
  * published by The Pragmatic Bookshelf.
@@ -52,6 +53,8 @@ var RESULTS = [
   },
 ];
 
+
+
 var CustomerSearchComponent = Component({
   selector: "shine-customer-search",
   template: '\
@@ -60,21 +63,15 @@ var CustomerSearchComponent = Component({
 </header> \
 <section class="search-form"> \
   <form> \
-    <div class="input-group input-group-lg"> \
-      <label for="keywords" class="sr-only">Keywords></label> \
-      <input type="text" id="keywords" name="keywords" \
-             placeholder="First Name, Last Name, or Email Address"\
-             class="form-control input-lg" \
-             bindon-ngModel="keywords"> \
-      <span class="input-group-btn"> \
-        <input type="submit" value="Find Customers"\
-         class="btn btn-primary btn-lg" \
-         on-click="search()"> \
-      </span> \
-    </div> \
+    <label for="keywords" class="sr-only">Keywords></label> \
+    <input type="text" id="keywords" name="keywords" \
+           placeholder="First Name, Last Name, or Email Address"\
+           bind-ngModel="keywords" \
+           on-ngModelChange="search($event)" \
+           class="form-control input-lg">\
   </form> \
 </section> \
-<section class="search-results"> \
+<section class="search-results" *ngIf="customers"> \
   <header> \
     <h1 class="h3">Results</h1> \
   </header> \
@@ -97,29 +94,36 @@ var CustomerSearchComponent = Component({
 }).Class({
   constructor: [
     Http,
-    function(http){
+    function(http) {
       this.customers = null;
-      this.http = http;
-      this.keywords = "";
+      this.http      = http;
+      this.keywords  = "";
     }
   ],
-  search: function() {
+  search: function($event) {
     var self = this;
+    self.keywords = $event;
+    if (self.keywords.length < 3) {
+      return;
+    }
     self.http.get(
       "/customers.json?keywords=" + self.keywords
     ).subscribe(
-      function(response){
+      function(response) {
         self.customers = response.json().customers;
       },
-      function(response){
-        window.alert(response)
+      function(response) {
+        window.alert(response);
       }
     );
   }
 });
 
 var CustomerAppModule = NgModule({
-  imports:      [ BrowserModule, FormsModule, HttpModule ],
+  imports:      [
+    BrowserModule,
+    FormsModule,
+    HttpModule ],
   declarations: [ CustomerSearchComponent ],
   bootstrap:    [ CustomerSearchComponent ]
 })
