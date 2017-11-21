@@ -6,15 +6,4 @@
  * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/dcbang2 for more book information.
 ***/
-module.exports = function(config) {
-  config.set({
-    frameworks: ['jasmine'],
-    files: [
-      '**/*.spec.js'
-    ],
-    preprocessors: {
-      '**/*.spec.js': [ 'webpack' ]
-    },
-    webpack: require('../../config/webpack/test.js'),
-    browsers: ['PhantomJS'] })
-}
+import "polyfills/no_zonejs";
